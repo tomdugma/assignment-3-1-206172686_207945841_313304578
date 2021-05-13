@@ -1,0 +1,1198 @@
+---
+openapi: 3.0.0
+info:
+  title: SUPERLIGA
+  description: This is an API for SUPERLIGA manager
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: sarithol@post.bgu.ac.il
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+- url: https://virtserver.swaggerhub.com/saritholl/SUPERLIGA/1.0.0
+  description: SwaggerHub API Auto Mocking
+tags:
+- name: league
+  description: Data about the Leagues
+  externalDocs:
+    description: Find out more
+    url: http://swagger.io
+- name: season
+  description: Represents a season by name, date and teams. A serius of matches between all the different teams.
+- name: round
+  description: Contains all the maches of a specific round (stage).
+- name: match
+  description: Represents a mach between two teams, home team VS away team.
+- name: stadium
+  description: The location where the matches accure.
+- name: team
+  description: Contains players and coaches. commpiting agains other teams during a season
+- name: user
+  description: Every person who uses the platform and registered
+- name: player
+  description: Play within a team, every player as a position on the court
+- name: coach
+  description: Training a coaching the players of single team.
+- name: matchEvent
+  description: Represent every event happened in a match
+paths:
+  /league/{leagueId}:
+    get:
+      tags:
+      - league
+      summary: Find league by ID
+      description: Returns a single league
+      operationId: getLeagueById
+      parameters:
+      - name: leagueId
+        in: path
+        description: ID of league to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/League'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/League'
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: League not found
+  /season/{seasonId}:
+    get:
+      tags:
+      - season
+      summary: Find season by ID
+      description: Returns a single season
+      operationId: getSeasonById
+      parameters:
+      - name: seasonId
+        in: path
+        description: ID of season to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/Season'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Season'
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Season not found
+  /round/{roundId}:
+    get:
+      tags:
+      - round
+      summary: Find round by ID
+      description: Returns a single round
+      operationId: getRoundById
+      parameters:
+      - name: roundId
+        in: path
+        description: ID of round to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/Round'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Round'
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Round not found
+  /match:
+    put:
+      tags:
+      - match
+      summary: Update an existing match
+      operationId: updateMatch
+      requestBody:
+        description: Match object that needs to be updated in the system
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Match'
+          application/yaml:
+            schema:
+              $ref: '#/components/schemas/Match'
+        required: true
+      responses:
+        "200":
+          description: Match was updated successfully
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Match not found
+        "405":
+          description: Validation exception
+    post:
+      tags:
+      - match
+      summary: Add a new match to the system
+      operationId: createMatch
+      requestBody:
+        description: Match object that needs to be added to the system
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Match'
+          application/yaml:
+            schema:
+              $ref: '#/components/schemas/Match'
+        required: true
+      responses:
+        "201":
+          description: A new match have been created
+        "400":
+          description: Invalid input
+  /match/{matchId}:
+    get:
+      tags:
+      - match
+      summary: Find match by ID
+      description: Returns a single match
+      operationId: getMatchById
+      parameters:
+      - name: matchId
+        in: path
+        description: ID of match to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/Match'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Match'
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: match not found
+  /match/findByTeam/{teamId}:
+    get:
+      tags:
+      - match
+      summary: Finds matches by team
+      operationId: findMatchesByTeam
+      parameters:
+      - name: teamId
+        in: path
+        description: ID of team to return it's matches
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Match'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Match'
+        "400":
+          description: Invalid team id value
+  /stadium/{stadiumId}:
+    get:
+      tags:
+      - stadium
+      summary: Find stadium by ID
+      description: Returns a single stadium
+      operationId: getStadiumById
+      parameters:
+      - name: stadiumId
+        in: path
+        description: ID of stadium to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/Stadium'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stadium'
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Stadium not found
+  /team/{teamId}:
+    get:
+      tags:
+      - team
+      summary: Find team by ID
+      description: Returns a single team
+      operationId: getTeamById
+      parameters:
+      - name: teamId
+        in: path
+        description: ID of team to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/Team'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Team not found
+  /team/query:
+    get:
+      tags:
+      - team
+      summary: Query teams
+      operationId: queryTeams
+      parameters:
+      - name: search
+        in: query
+        description: search string
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: sort
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+            default: desc
+            enum:
+            - asc
+            - desc
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+  /user:
+    post:
+      tags:
+      - user
+      summary: Create user
+      description: This can only be done by the logged in user.
+      operationId: createUser
+      requestBody:
+        description: Created user object
+        content:
+          application/yaml:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "201":
+          description: A new uswe has been added
+  /user/login:
+    get:
+      tags:
+      - user
+      summary: Logs user into the system
+      operationId: loginUser
+      parameters:
+      - name: username
+        in: query
+        description: The user name for login
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        description: The password for login in clear text
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "400":
+          description: Invalid username/password supplied
+  /user/{userId}:
+    get:
+      tags:
+      - user
+      summary: Find user by ID
+      description: Returns a single user
+      operationId: getUserById
+      parameters:
+      - name: userId
+        in: path
+        description: ID of user to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: user not found
+  /user/logout:
+    get:
+      tags:
+      - user
+      summary: Logs out current logged in user session
+      operationId: logoutUser
+      responses:
+        default:
+          description: successful operation
+  /user/{userId}/addFavoritePlayer/{playerId}:
+    post:
+      tags:
+      - user
+      summary: add a favorite player
+      operationId: addFavoritePlayer
+      parameters:
+      - name: userId
+        in: path
+        description: ID of user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      - name: playerId
+        in: path
+        description: ID of player to ad to favotires
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "201":
+          description: Player was successfully added
+          content:
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /user/{userId}/addFavoriteMatch/{matchId}:
+    post:
+      tags:
+      - user
+      summary: add a favorite match
+      operationId: addFavoriteMatch
+      parameters:
+      - name: userId
+        in: path
+        description: ID of user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      - name: matchId
+        in: path
+        description: ID of match to add to favotires
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "201":
+          description: Match was successfully added
+          content:
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /user/{userId}/addFavoriteTeam/{teamId}:
+    post:
+      tags:
+      - user
+      summary: add a favorite team
+      operationId: addFavoriteTeam
+      parameters:
+      - name: userId
+        in: path
+        description: ID of user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      - name: teamId
+        in: path
+        description: ID of team to add to favotires
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "201":
+          description: Team was successfully added
+          content:
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /player/{playerId}:
+    get:
+      tags:
+      - player
+      summary: Find player by ID
+      description: Returns a single player
+      operationId: getPlayerById
+      parameters:
+      - name: playerId
+        in: path
+        description: ID of player to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Player was successfully found
+          content:
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/Player'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: player not found
+  /player/findByTeam/{teamId}:
+    get:
+      tags:
+      - player
+      summary: Finds players by team
+      operationId: findPlayersByTeam
+      parameters:
+      - name: teamId
+        in: path
+        description: ID of team to return it's players
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Players were successfully found
+          content:
+            application/yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Player'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Player'
+        "400":
+          description: Invalid team id value
+        "404":
+          description: Team not found
+  /player/query:
+    get:
+      tags:
+      - player
+      summary: Query players
+      operationId: queryPlayers
+      parameters:
+      - name: search
+        in: query
+        description: search string
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: position
+        in: query
+        description: filter by position
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: teamName
+        in: query
+        description: filter by team name
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: sort
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+            default: desc
+            enum:
+            - asc
+            - desc
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Player'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Player'
+  /coach/{coachId}:
+    get:
+      tags:
+      - coach
+      summary: Find coach by ID
+      description: Returns a single coach
+      operationId: getCoachById
+      parameters:
+      - name: coachId
+        in: path
+        description: ID of coach to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/Coach'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Coach'
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Coach not found
+  /coach/query:
+    get:
+      tags:
+      - coach
+      summary: Query coaches
+      operationId: queryCoaches
+      parameters:
+      - name: search
+        in: query
+        description: search string
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: teamName
+        in: query
+        description: filter by team name
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: sort
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+            default: desc
+            enum:
+            - asc
+            - desc
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Coach'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Coach'
+  /coach/findByTeam/{teamId}:
+    get:
+      tags:
+      - coach
+      summary: Find coach by team
+      operationId: findCoachByTeam
+      parameters:
+      - name: teamId
+        in: path
+        description: ID of team to return it's coach
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Coach was successfully found
+          content:
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/Coach'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Coach'
+        "400":
+          description: Invalid team id value
+  /events/{eventId}:
+    get:
+      tags:
+      - event
+      summary: Find event by ID
+      description: Returns a single event
+      operationId: getEventById
+      parameters:
+      - name: eventId
+        in: path
+        description: ID of event to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Event was successfully found
+          content:
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/MatchEvent'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchEvent'
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: MatchEvent not found
+  /event:
+    put:
+      tags:
+      - event
+      summary: Update an existing match event
+      operationId: updateMatchEvent
+      requestBody:
+        description: Match event object that needs to be updated in match diary
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MatchEvent'
+          application/yaml:
+            schema:
+              $ref: '#/components/schemas/MatchEvent'
+        required: true
+      responses:
+        "200":
+          description: MatchEvent was successfully update
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: MatchEvent not found
+        "405":
+          description: Validation exception
+    post:
+      tags:
+      - event
+      summary: Add a new event to match
+      operationId: createMatchEvent
+      requestBody:
+        description: Match event object that needs to be added match diary
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MatchEvent'
+          application/yaml:
+            schema:
+              $ref: '#/components/schemas/MatchEvent'
+        required: true
+      responses:
+        "201":
+          description: Event was successfully added
+        "405":
+          description: Invalid input
+components:
+  schemas:
+    League:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "10"
+        name:
+          type: string
+          example: Permier league
+        currentSeasonId:
+          type: string
+          example: "11"
+      example:
+      - id: "10"
+        name: Permier league
+        currentSeasonId: "11"
+      xml:
+        name: League
+    Season:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "10"
+        name:
+          type: string
+          example: 2015-2016
+        leagueId:
+          type: string
+          example: "11"
+        currentRoundId:
+          type: string
+          example: "3"
+        isCurrentSeason:
+          type: boolean
+          example: true
+          default: false
+      example:
+      - id: "10"
+        name: 2015-2016
+        leagueId: "11"
+        currentRoundId: "12"
+        isCurrentSeason: true
+      xml:
+        name: Season
+    Round:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "10"
+        name:
+          type: string
+          example: semi-final
+        leagueId:
+          type: string
+          example: "11"
+        seasonId:
+          type: string
+          example: "12"
+        isCurrentRound:
+          type: boolean
+          example: true
+          default: false
+        start:
+          type: string
+          format: date-time
+          example: 2021-01-30T20:30:00Z
+        end:
+          type: string
+          format: date-time
+          example: 2021-01-30T21:30:00Z
+      example:
+      - id: "10"
+        name: semi-final
+        leagueId: "11"
+        seasonId: "12"
+        isCurrentRound: true
+        start: 2021-01-30T20:30:00Z
+      xml:
+        name: Round
+    Match:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "10"
+        leagueId:
+          type: string
+          example: "11"
+        seasonId:
+          type: string
+          example: "12"
+        roundId:
+          type: string
+          example: "13"
+        stadium:
+          $ref: '#/components/schemas/Stadium'
+        homeTeam:
+          $ref: '#/components/schemas/Team'
+        awayTeam:
+          $ref: '#/components/schemas/Team'
+        events:
+          type: array
+          xml:
+            name: event
+            wrapped: true
+          items:
+            $ref: '#/components/schemas/MatchEvent'
+        start:
+          type: string
+          format: date-time
+          example: 2021-01-30T20:30:00Z
+        end:
+          type: string
+          format: date-time
+          example: 2021-01-30T21:30:00Z
+        homeTeamGoals:
+          type: integer
+          format: int32
+          example: 2
+        awayTeamGoals:
+          type: integer
+          format: int32
+          example: 1
+        status:
+          type: string
+          description: Match Status
+          example: done
+          enum:
+          - future
+          - playing
+          - done
+      xml:
+        name: Match
+    Stadium:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "10"
+        name:
+          type: string
+          example: Sami Ofer
+      example:
+      - id: "10"
+        name: Sami Ofer
+      xml:
+        name: Stadium
+    Team:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "10"
+        name:
+          type: string
+          example: Maccabi Haifa
+        stadiumId:
+          type: string
+          example: "11"
+        teamLogo:
+          type: string
+          example: https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png
+      example:
+      - id: "10"
+        name: Maccabi Haifa
+        stadiumId: "11"
+        teamLogo: https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png
+      xml:
+        name: Team
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "10"
+        favoriteTeams:
+          type: array
+          xml:
+            name: team
+            wrapped: true
+          items:
+            $ref: '#/components/schemas/Team'
+        favoriteMatches:
+          type: array
+          xml:
+            name: match
+            wrapped: true
+          items:
+            $ref: '#/components/schemas/Match'
+        favoritePlayers:
+          type: array
+          xml:
+            name: player
+            wrapped: true
+          items:
+            $ref: '#/components/schemas/Player'
+        userName:
+          type: string
+          example: Yaniv20
+        firstName:
+          type: string
+          example: Yaniv
+        lastName:
+          type: string
+          example: Katan
+        country:
+          type: string
+          example: Israel
+        password:
+          type: string
+          example: yanivk20
+        email:
+          type: string
+          example: yaniv20@gmail.com
+        picture:
+          type: string
+          example: https://secure.cache.images.core.optasports.com/soccer/players/150x150/56064.png
+        isLoggedIn:
+          type: boolean
+          example: true
+          default: false
+        role:
+          type: string
+          description: Role
+          example: user
+          default: user
+          enum:
+          - user
+          - manager
+      xml:
+        name: User
+    Player:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "10"
+        common name:
+          type: string
+          example: Josh Cohen
+        nationality:
+          type: string
+          example: American
+        date of birth:
+          type: string
+          example: August 18, 1992
+        country of birth:
+          type: string
+          example: USA
+        hight:
+          type: number
+          example: 1.86
+        weight:
+          type: number
+          example: 79
+        team:
+          $ref: '#/components/schemas/Team'
+        picture:
+          type: string
+          example: https://static.football.co.il/wp-content/themes/kingclub-theme/images/players/26-99-353088.png
+        position:
+          type: string
+          example: Goalkeeper
+      xml:
+        name: Player
+    Coach:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "10"
+        common name:
+          type: string
+          example: Barak Bachar
+        nationality:
+          type: string
+          example: Israeli
+        date of birth:
+          type: string
+          example: September 21, 1979
+        country of birth:
+          type: string
+          example: Israel
+        team:
+          $ref: '#/components/schemas/Team'
+        picture:
+          type: string
+          example: http://mhaifafc.com/pics/2020-2021/%D7%A6%D7%95%D7%95%D7%AA%20%D7%9E%D7%A7%D7%A6%D7%95%D7%A2%D7%99/%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA%20%D7%A6%D7%A8%D7%95%D7%91%D7%95%D7%AA/%D7%91%D7%9B%D7%A8.png
+      xml:
+        name: Coach
+    MatchEvent:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "10"
+        matchId:
+          type: string
+          example: "11"
+        time:
+          type: string
+          format: date-time
+          example: 2021-01-30T20:30:00Z
+        minute:
+          type: integer
+          format: int32
+          example: 33
+        description:
+          type: string
+          example: yellow card to Raz Meir
+        type:
+          type: string
+          description: Event Type
+          example: goal
+          enum:
+          - goal
+          - offside
+          - foul
+          - red card
+          - yellow card
+          - injury
+          - substitution
+      xml:
+        name: MatchEvent
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+          example: 404
+        type:
+          type: string
+          example: page not found
+        message:
+          type: string
+          example: the requierd page was not found
