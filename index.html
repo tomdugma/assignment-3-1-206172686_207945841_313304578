@@ -182,8 +182,8 @@
     <div class="app-desc">This is an API for SUPERLIGA manager</div>
     <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
     <div class="app-desc">Contact Info: <a href="sarithol@post.bgu.ac.il">sarithol@post.bgu.ac.il</a></div>
-    <div class="app-desc">Version: 1.0.0</div>
-    <div class="app-desc">BasePath:/saritholl/SUPERLIGA/1.0.0</div>
+    <div class="app-desc">Version: 3.0.0</div>
+    <div class="app-desc">BasePath:/saritholl/SUPERLIGA/3.0.0</div>
     <div class="license-info">Apache 2.0</div>
     <div class="license-url">http://www.apache.org/licenses/LICENSE-2.0.html</div>
   <h2>Access</h2>
@@ -193,85 +193,82 @@
 
   <h3>Table of Contents </h3>
   <div class="method-summary"></div>
-  <h4><a href="#Coach">Coach</a></h4>
+  <h4><a href="#Auth">Auth</a></h4>
   <ul>
-  <li><a href="#findCoachByTeam"><code><span class="http-method">get</span> /coach/findByTeam/{teamId}</code></a></li>
-  <li><a href="#getCoachById"><code><span class="http-method">get</span> /coach/{coachId}</code></a></li>
-  <li><a href="#queryCoaches"><code><span class="http-method">get</span> /coach/query</code></a></li>
+  <li><a href="#createUser"><code><span class="http-method">post</span> /register</code></a></li>
+  <li><a href="#loginUser"><code><span class="http-method">post</span> /login</code></a></li>
+  <li><a href="#logoutUser"><code><span class="http-method">post</span> /logout</code></a></li>
   </ul>
-  <h4><a href="#Event">Event</a></h4>
+  <h4><a href="#Events">Events</a></h4>
   <ul>
-  <li><a href="#createMatchEvent"><code><span class="http-method">post</span> /event</code></a></li>
-  <li><a href="#getEventById"><code><span class="http-method">get</span> /events/{eventId}</code></a></li>
-  <li><a href="#updateMatchEvent"><code><span class="http-method">put</span> /event</code></a></li>
+  <li><a href="#createEvent"><code><span class="http-method">post</span> /events/add</code></a></li>
   </ul>
   <h4><a href="#League">League</a></h4>
   <ul>
-  <li><a href="#getLeagueById"><code><span class="http-method">get</span> /league/{leagueId}</code></a></li>
+  <li><a href="#getLeagueDetails"><code><span class="http-method">get</span> /league/getDetails</code></a></li>
   </ul>
-  <h4><a href="#Match">Match</a></h4>
+  <h4><a href="#Matches">Matches</a></h4>
   <ul>
-  <li><a href="#createMatch"><code><span class="http-method">post</span> /match</code></a></li>
-  <li><a href="#findMatchesByTeam"><code><span class="http-method">get</span> /match/findByTeam/{teamId}</code></a></li>
-  <li><a href="#getMatchById"><code><span class="http-method">get</span> /match/{matchId}</code></a></li>
-  <li><a href="#updateMatch"><code><span class="http-method">put</span> /match</code></a></li>
+  <li><a href="#createMatch"><code><span class="http-method">post</span> /matches/add</code></a></li>
+  <li><a href="#findMatchesByTeam"><code><span class="http-method">get</span> /matches/findByTeam/{teamId}</code></a></li>
+  <li><a href="#getMatchById"><code><span class="http-method">get</span> /matches/{matchId}</code></a></li>
+  <li><a href="#matchIds"><code><span class="http-method">get</span> /matches/list/{matchIds}</code></a></li>
   </ul>
-  <h4><a href="#Player">Player</a></h4>
+  <h4><a href="#Players">Players</a></h4>
   <ul>
-  <li><a href="#findPlayersByTeam"><code><span class="http-method">get</span> /player/findByTeam/{teamId}</code></a></li>
-  <li><a href="#getPlayerById"><code><span class="http-method">get</span> /player/{playerId}</code></a></li>
-  <li><a href="#queryPlayers"><code><span class="http-method">get</span> /player/query</code></a></li>
+  <li><a href="#findPlayersByTeam"><code><span class="http-method">get</span> /players/findByTeam/{teamId}</code></a></li>
+  <li><a href="#getPlayerById"><code><span class="http-method">get</span> /players/{playerId}</code></a></li>
+  <li><a href="#queryPlayers"><code><span class="http-method">get</span> /players/query</code></a></li>
   </ul>
   <h4><a href="#Round">Round</a></h4>
   <ul>
   <li><a href="#getRoundById"><code><span class="http-method">get</span> /round/{roundId}</code></a></li>
   </ul>
-  <h4><a href="#Season">Season</a></h4>
+  <h4><a href="#Scores">Scores</a></h4>
   <ul>
-  <li><a href="#getSeasonById"><code><span class="http-method">get</span> /season/{seasonId}</code></a></li>
+  <li><a href="#createScore"><code><span class="http-method">post</span> /scores/add</code></a></li>
   </ul>
-  <h4><a href="#Stadium">Stadium</a></h4>
+  <h4><a href="#Teams">Teams</a></h4>
   <ul>
-  <li><a href="#getStadiumById"><code><span class="http-method">get</span> /stadium/{stadiumId}</code></a></li>
+  <li><a href="#getTeamById"><code><span class="http-method">get</span> /teams/{teamId}</code></a></li>
+  <li><a href="#queryTeams"><code><span class="http-method">get</span> /teams/query</code></a></li>
   </ul>
-  <h4><a href="#Team">Team</a></h4>
+  <h4><a href="#Users">Users</a></h4>
   <ul>
-  <li><a href="#getTeamById"><code><span class="http-method">get</span> /team/{teamId}</code></a></li>
-  <li><a href="#queryTeams"><code><span class="http-method">get</span> /team/query</code></a></li>
-  </ul>
-  <h4><a href="#User">User</a></h4>
-  <ul>
-  <li><a href="#addFavoriteMatch"><code><span class="http-method">post</span> /user/{userId}/addFavoriteMatch/{matchId}</code></a></li>
-  <li><a href="#addFavoritePlayer"><code><span class="http-method">post</span> /user/{userId}/addFavoritePlayer/{playerId}</code></a></li>
-  <li><a href="#addFavoriteTeam"><code><span class="http-method">post</span> /user/{userId}/addFavoriteTeam/{teamId}</code></a></li>
-  <li><a href="#createUser"><code><span class="http-method">post</span> /user</code></a></li>
-  <li><a href="#getUserById"><code><span class="http-method">get</span> /user/{userId}</code></a></li>
-  <li><a href="#loginUser"><code><span class="http-method">get</span> /user/login</code></a></li>
-  <li><a href="#logoutUser"><code><span class="http-method">get</span> /user/logout</code></a></li>
+  <li><a href="#favorite match"><code><span class="http-method">post</span> /users/favoriteMatch</code></a></li>
+  <li><a href="#favoriteMatch"><code><span class="http-method">delete</span> /users/favoriteMatch/{matchId}</code></a></li>
+  <li><a href="#favoriteMatches"><code><span class="http-method">get</span> /users/favoriteMatches</code></a></li>
   </ul>
 
-  <h1><a name="Coach">Coach</a></h1>
-  <div class="method"><a name="findCoachByTeam"></a>
+  <h1><a name="Auth">Auth</a></h1>
+  <div class="method"><a name="createUser"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /coach/findByTeam/{teamId}</code></pre></div>
-    <div class="method-summary">Find coach by team (<span class="nickname">findCoachByTeam</span>)</div>
-    <div class="method-notes"></div>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /register</code></pre></div>
+    <div class="method-summary">Create new user (<span class="nickname">createUser</span>)</div>
+    <div class="method-notes">A new user from the client is added to the server</div>
 
-    <h3 class="field-label">Path parameters</h3>
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/yaml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
     <div class="field-items">
-      <div class="param">teamId (required)</div>
+      <div class="param">body <a href="#User">User</a> (required)</div>
       
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of team to return it&#x27;s coach format: int64</div>    </div>  <!-- field-items -->
-
-
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Created user object </div>
+                </div>  <!-- field-items -->
 
 
 
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      <a href="#Coach">Coach</a>
+      <a href="#User">User</a>
       
     </div>
 
@@ -280,18 +277,78 @@
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "country of birth" : "Israel",
-  "nationality" : "Israeli",
+  "firstName" : "Yaniv",
+  "lastName" : "Katan",
+  "country" : "Israel",
+  "password" : "yanivk20",
   "id" : "10",
-  "common name" : "Barak Bachar",
-  "team" : [ {
+  "isAdmin" : false,
+  "userName" : "Yaniv20",
+  "email" : "yaniv20@gmail.com",
+  "picture" : "https://secure.cache.images.core.optasports.com/soccer/players/150x150/56064.png",
+  "favoriteMatches" : [ {
+    "start" : "2021-01-30T20:30:00Z",
+    "referee" : "Sapir Berman",
+    "awayTeamGoals" : 1,
+    "seasonId" : "12",
+    "leagueId" : "11",
+    "stadium" : {
+      "name" : "Sami Offer",
+      "id" : "11"
+    },
+    "homeTeam" : [ {
+      "id" : "10",
+      "name" : "Maccabi Haifa",
+      "stadiumId" : "11",
+      "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
+    } ],
     "id" : "10",
-    "name" : "Maccabi Haifa",
-    "stadiumId" : "11",
-    "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
-  } ],
-  "date of birth" : "September 21, 1979",
-  "picture" : "http://mhaifafc.com/pics/2020-2021/%D7%A6%D7%95%D7%95%D7%AA%20%D7%9E%D7%A7%D7%A6%D7%95%D7%A2%D7%99/%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA%20%D7%A6%D7%A8%D7%95%D7%91%D7%95%D7%AA/%D7%91%D7%9B%D7%A8.png"
+    "homeTeamGoals" : 2,
+    "roundId" : "13",
+    "events" : [ {
+      "description" : "yellow card to Raz Meir",
+      "id" : "10",
+      "type" : "goal",
+      "minute" : 33
+    }, {
+      "description" : "yellow card to Raz Meir",
+      "id" : "10",
+      "type" : "goal",
+      "minute" : 33
+    } ],
+    "status" : "done"
+  }, {
+    "start" : "2021-01-30T20:30:00Z",
+    "referee" : "Sapir Berman",
+    "awayTeamGoals" : 1,
+    "seasonId" : "12",
+    "leagueId" : "11",
+    "stadium" : {
+      "name" : "Sami Offer",
+      "id" : "11"
+    },
+    "homeTeam" : [ {
+      "id" : "10",
+      "name" : "Maccabi Haifa",
+      "stadiumId" : "11",
+      "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
+    } ],
+    "id" : "10",
+    "homeTeamGoals" : 2,
+    "roundId" : "13",
+    "events" : [ {
+      "description" : "yellow card to Raz Meir",
+      "id" : "10",
+      "type" : "goal",
+      "minute" : 33
+    }, {
+      "description" : "yellow card to Raz Meir",
+      "id" : "10",
+      "type" : "goal",
+      "minute" : 33
+    } ],
+    "status" : "done"
+  } ]
 }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -303,83 +360,17 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Coach was successfully found
-        <a href="#Coach">Coach</a>
-    <h4 class="field-label">400</h4>
-    Invalid team id value
-        <a href="#"></a>
+    <h4 class="field-label">201</h4>
+    A new uswe has been added
+        <a href="#User">User</a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="getCoachById"></a>
+  <div class="method"><a name="loginUser"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /coach/{coachId}</code></pre></div>
-    <div class="method-summary">Find coach by ID (<span class="nickname">getCoachById</span>)</div>
-    <div class="method-notes">Returns a single coach</div>
-
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">coachId (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of coach to return format: int64</div>    </div>  <!-- field-items -->
-
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#Coach">Coach</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "country of birth" : "Israel",
-  "nationality" : "Israeli",
-  "id" : "10",
-  "common name" : "Barak Bachar",
-  "team" : [ {
-    "id" : "10",
-    "name" : "Maccabi Haifa",
-    "stadiumId" : "11",
-    "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
-  } ],
-  "date of birth" : "September 21, 1979",
-  "picture" : "http://mhaifafc.com/pics/2020-2021/%D7%A6%D7%95%D7%95%D7%AA%20%D7%9E%D7%A7%D7%A6%D7%95%D7%A2%D7%99/%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA%20%D7%A6%D7%A8%D7%95%D7%91%D7%95%D7%AA/%D7%91%D7%9B%D7%A8.png"
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>application/yaml</code></li>
-      <li><code>application/json</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    successful operation
-        <a href="#Coach">Coach</a>
-    <h4 class="field-label">400</h4>
-    Invalid ID supplied
-        <a href="#"></a>
-    <h4 class="field-label">404</h4>
-    Coach not found
-        <a href="#"></a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="queryCoaches"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /coach/query</code></pre></div>
-    <div class="method-summary">Query coaches (<span class="nickname">queryCoaches</span>)</div>
-    <div class="method-notes"></div>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /login</code></pre></div>
+    <div class="method-summary">Login an exist user (<span class="nickname">loginUser</span>)</div>
+    <div class="method-notes">An exist user login to the system</div>
 
 
 
@@ -387,18 +378,16 @@
 
     <h3 class="field-label">Query parameters</h3>
     <div class="field-items">
-      <div class="param">search (optional)</div>
+      <div class="param">username (required)</div>
       
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; search string </div>      <div class="param">teamName (optional)</div>
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The user name for login </div>      <div class="param">password (required)</div>
       
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; filter by team name </div>      <div class="param">sort (optional)</div>
-      
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The password for login in clear text </div>    </div>  <!-- field-items -->
 
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      array[<a href="#Coach">Coach</a>]
+      <a href="#User">User</a>
       
     </div>
 
@@ -406,33 +395,80 @@
 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>[ {
-  "country of birth" : "Israel",
-  "nationality" : "Israeli",
+    <pre class="example"><code>{
+  "firstName" : "Yaniv",
+  "lastName" : "Katan",
+  "country" : "Israel",
+  "password" : "yanivk20",
   "id" : "10",
-  "common name" : "Barak Bachar",
-  "team" : [ {
+  "isAdmin" : false,
+  "userName" : "Yaniv20",
+  "email" : "yaniv20@gmail.com",
+  "picture" : "https://secure.cache.images.core.optasports.com/soccer/players/150x150/56064.png",
+  "favoriteMatches" : [ {
+    "start" : "2021-01-30T20:30:00Z",
+    "referee" : "Sapir Berman",
+    "awayTeamGoals" : 1,
+    "seasonId" : "12",
+    "leagueId" : "11",
+    "stadium" : {
+      "name" : "Sami Offer",
+      "id" : "11"
+    },
+    "homeTeam" : [ {
+      "id" : "10",
+      "name" : "Maccabi Haifa",
+      "stadiumId" : "11",
+      "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
+    } ],
     "id" : "10",
-    "name" : "Maccabi Haifa",
-    "stadiumId" : "11",
-    "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
-  } ],
-  "date of birth" : "September 21, 1979",
-  "picture" : "http://mhaifafc.com/pics/2020-2021/%D7%A6%D7%95%D7%95%D7%AA%20%D7%9E%D7%A7%D7%A6%D7%95%D7%A2%D7%99/%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA%20%D7%A6%D7%A8%D7%95%D7%91%D7%95%D7%AA/%D7%91%D7%9B%D7%A8.png"
-}, {
-  "country of birth" : "Israel",
-  "nationality" : "Israeli",
-  "id" : "10",
-  "common name" : "Barak Bachar",
-  "team" : [ {
+    "homeTeamGoals" : 2,
+    "roundId" : "13",
+    "events" : [ {
+      "description" : "yellow card to Raz Meir",
+      "id" : "10",
+      "type" : "goal",
+      "minute" : 33
+    }, {
+      "description" : "yellow card to Raz Meir",
+      "id" : "10",
+      "type" : "goal",
+      "minute" : 33
+    } ],
+    "status" : "done"
+  }, {
+    "start" : "2021-01-30T20:30:00Z",
+    "referee" : "Sapir Berman",
+    "awayTeamGoals" : 1,
+    "seasonId" : "12",
+    "leagueId" : "11",
+    "stadium" : {
+      "name" : "Sami Offer",
+      "id" : "11"
+    },
+    "homeTeam" : [ {
+      "id" : "10",
+      "name" : "Maccabi Haifa",
+      "stadiumId" : "11",
+      "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
+    } ],
     "id" : "10",
-    "name" : "Maccabi Haifa",
-    "stadiumId" : "11",
-    "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
-  } ],
-  "date of birth" : "September 21, 1979",
-  "picture" : "http://mhaifafc.com/pics/2020-2021/%D7%A6%D7%95%D7%95%D7%AA%20%D7%9E%D7%A7%D7%A6%D7%95%D7%A2%D7%99/%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA%20%D7%A6%D7%A8%D7%95%D7%91%D7%95%D7%AA/%D7%91%D7%9B%D7%A8.png"
-} ]</code></pre>
+    "homeTeamGoals" : 2,
+    "roundId" : "13",
+    "events" : [ {
+      "description" : "yellow card to Raz Meir",
+      "id" : "10",
+      "type" : "goal",
+      "minute" : 33
+    }, {
+      "description" : "yellow card to Raz Meir",
+      "id" : "10",
+      "type" : "goal",
+      "minute" : 33
+    } ],
+    "status" : "done"
+  } ]
+}</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
@@ -443,17 +479,41 @@
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    successful operation
-        
+    <h4 class="field-label">201</h4>
+    User was found in the DB and authenitcated successfully
+        <a href="#User">User</a>
   </div> <!-- method -->
   <hr/>
-  <h1><a name="Event">Event</a></h1>
-  <div class="method"><a name="createMatchEvent"></a>
+  <div class="method"><a name="logoutUser"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /event</code></pre></div>
-    <div class="method-summary">Add a new event to match (<span class="nickname">createMatchEvent</span>)</div>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /logout</code></pre></div>
+    <div class="method-summary">logout a user from the system and delete his cookie (<span class="nickname">logoutUser</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    the user has ben successfully logged out
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Events">Events</a></h1>
+  <div class="method"><a name="createEvent"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /events/add</code></pre></div>
+    <div class="method-summary">Add a new event to the system (<span class="nickname">createEvent</span>)</div>
     <div class="method-notes"></div>
 
 
@@ -466,9 +526,9 @@
 
     <h3 class="field-label">Request body</h3>
     <div class="field-items">
-      <div class="param">body <a href="#MatchEvent">MatchEvent</a> (required)</div>
+      <div class="param">body <a href="#Event">Event</a> (required)</div>
       
-            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Match event object that needs to be added match diary </div>
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Event object that needs to be added to the system </div>
                 </div>  <!-- field-items -->
 
 
@@ -481,128 +541,18 @@
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">201</h4>
-    Event was successfully added
-        <a href="#"></a>
-    <h4 class="field-label">405</h4>
-    Invalid input
-        <a href="#"></a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="getEventById"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /events/{eventId}</code></pre></div>
-    <div class="method-summary">Find event by ID (<span class="nickname">getEventById</span>)</div>
-    <div class="method-notes">Returns a single event</div>
-
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">eventId (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of event to return format: int64</div>    </div>  <!-- field-items -->
-
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#MatchEvent">MatchEvent</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "description" : "yellow card to Raz Meir",
-  "id" : "10",
-  "time" : "2021-01-30T20:30:00Z",
-  "type" : "goal",
-  "matchId" : "11",
-  "minute" : 33
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>application/yaml</code></li>
-      <li><code>application/json</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Event was successfully found
-        <a href="#MatchEvent">MatchEvent</a>
-    <h4 class="field-label">400</h4>
-    Invalid ID supplied
-        <a href="#"></a>
-    <h4 class="field-label">404</h4>
-    MatchEvent not found
-        <a href="#"></a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="updateMatchEvent"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="put"><code class="huge"><span class="http-method">put</span> /event</code></pre></div>
-    <div class="method-summary">Update an existing match event (<span class="nickname">updateMatchEvent</span>)</div>
-    <div class="method-notes"></div>
-
-
-    <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
-    <ul>
-      <li><code>application/json</code></li>
-      <li><code>application/yaml</code></li>
-    </ul>
-
-    <h3 class="field-label">Request body</h3>
-    <div class="field-items">
-      <div class="param">body <a href="#MatchEvent">MatchEvent</a> (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Match event object that needs to be updated in match diary </div>
-                </div>  <!-- field-items -->
-
-
-
-
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    MatchEvent was successfully update
-        <a href="#"></a>
-    <h4 class="field-label">400</h4>
-    Invalid ID supplied
-        <a href="#"></a>
-    <h4 class="field-label">404</h4>
-    MatchEvent not found
-        <a href="#"></a>
-    <h4 class="field-label">405</h4>
-    Validation exception
+    A new event have been created
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <h1><a name="League">League</a></h1>
-  <div class="method"><a name="getLeagueById"></a>
+  <div class="method"><a name="getLeagueDetails"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /league/{leagueId}</code></pre></div>
-    <div class="method-summary">Find league by ID (<span class="nickname">getLeagueById</span>)</div>
-    <div class="method-notes">Returns a single league</div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /league/getDetails</code></pre></div>
+    <div class="method-summary">Get League details (<span class="nickname">getLeagueDetails</span>)</div>
+    <div class="method-notes">Returns theleague data</div>
 
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">leagueId (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of league to return format: int64</div>    </div>  <!-- field-items -->
 
 
 
@@ -622,7 +572,9 @@
     <pre class="example"><code>[ {
   "id" : "10",
   "name" : "Permier league",
-  "currentSeasonId" : "11"
+  "currentSeasonId" : "11",
+  "currentRoundId" : "123",
+  "currentSeasonName" : "2020/2021"
 } ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -637,19 +589,13 @@
     <h4 class="field-label">200</h4>
     successful operation
         <a href="#League">League</a>
-    <h4 class="field-label">400</h4>
-    Invalid ID supplied
-        <a href="#"></a>
-    <h4 class="field-label">404</h4>
-    League not found
-        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <h1><a name="Match">Match</a></h1>
+  <h1><a name="Matches">Matches</a></h1>
   <div class="method"><a name="createMatch"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /match</code></pre></div>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /matches/add</code></pre></div>
     <div class="method-summary">Add a new match to the system (<span class="nickname">createMatch</span>)</div>
     <div class="method-notes"></div>
 
@@ -680,15 +626,12 @@
     <h4 class="field-label">201</h4>
     A new match have been created
         <a href="#"></a>
-    <h4 class="field-label">400</h4>
-    Invalid input
-        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="findMatchesByTeam"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /match/findByTeam/{teamId}</code></pre></div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /matches/findByTeam/{teamId}</code></pre></div>
     <div class="method-summary">Finds matches by team (<span class="nickname">findMatchesByTeam</span>)</div>
     <div class="method-notes"></div>
 
@@ -715,71 +658,63 @@
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>[ {
   "start" : "2021-01-30T20:30:00Z",
+  "referee" : "Sapir Berman",
   "awayTeamGoals" : 1,
   "seasonId" : "12",
   "leagueId" : "11",
-  "stadium" : [ {
-    "id" : "10",
-    "name" : "Sami Ofer"
-  } ],
+  "stadium" : {
+    "name" : "Sami Offer",
+    "id" : "11"
+  },
   "homeTeam" : [ {
     "id" : "10",
     "name" : "Maccabi Haifa",
     "stadiumId" : "11",
     "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
   } ],
-  "end" : "2021-01-30T21:30:00Z",
   "id" : "10",
   "homeTeamGoals" : 2,
   "roundId" : "13",
   "events" : [ {
     "description" : "yellow card to Raz Meir",
     "id" : "10",
-    "time" : "2021-01-30T20:30:00Z",
     "type" : "goal",
-    "matchId" : "11",
     "minute" : 33
   }, {
     "description" : "yellow card to Raz Meir",
     "id" : "10",
-    "time" : "2021-01-30T20:30:00Z",
     "type" : "goal",
-    "matchId" : "11",
     "minute" : 33
   } ],
   "status" : "done"
 }, {
   "start" : "2021-01-30T20:30:00Z",
+  "referee" : "Sapir Berman",
   "awayTeamGoals" : 1,
   "seasonId" : "12",
   "leagueId" : "11",
-  "stadium" : [ {
-    "id" : "10",
-    "name" : "Sami Ofer"
-  } ],
+  "stadium" : {
+    "name" : "Sami Offer",
+    "id" : "11"
+  },
   "homeTeam" : [ {
     "id" : "10",
     "name" : "Maccabi Haifa",
     "stadiumId" : "11",
     "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
   } ],
-  "end" : "2021-01-30T21:30:00Z",
   "id" : "10",
   "homeTeamGoals" : 2,
   "roundId" : "13",
   "events" : [ {
     "description" : "yellow card to Raz Meir",
     "id" : "10",
-    "time" : "2021-01-30T20:30:00Z",
     "type" : "goal",
-    "matchId" : "11",
     "minute" : 33
   }, {
     "description" : "yellow card to Raz Meir",
     "id" : "10",
-    "time" : "2021-01-30T20:30:00Z",
     "type" : "goal",
-    "matchId" : "11",
     "minute" : 33
   } ],
   "status" : "done"
@@ -800,12 +735,15 @@
     <h4 class="field-label">400</h4>
     Invalid team id value
         <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    team id not found
+        <a href="#"></a>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="getMatchById"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /match/{matchId}</code></pre></div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /matches/{matchId}</code></pre></div>
     <div class="method-summary">Find match by ID (<span class="nickname">getMatchById</span>)</div>
     <div class="method-notes">Returns a single match</div>
 
@@ -832,36 +770,32 @@
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
   "start" : "2021-01-30T20:30:00Z",
+  "referee" : "Sapir Berman",
   "awayTeamGoals" : 1,
   "seasonId" : "12",
   "leagueId" : "11",
-  "stadium" : [ {
-    "id" : "10",
-    "name" : "Sami Ofer"
-  } ],
+  "stadium" : {
+    "name" : "Sami Offer",
+    "id" : "11"
+  },
   "homeTeam" : [ {
     "id" : "10",
     "name" : "Maccabi Haifa",
     "stadiumId" : "11",
     "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
   } ],
-  "end" : "2021-01-30T21:30:00Z",
   "id" : "10",
   "homeTeamGoals" : 2,
   "roundId" : "13",
   "events" : [ {
     "description" : "yellow card to Raz Meir",
     "id" : "10",
-    "time" : "2021-01-30T20:30:00Z",
     "type" : "goal",
-    "matchId" : "11",
     "minute" : 33
   }, {
     "description" : "yellow card to Raz Meir",
     "id" : "10",
-    "time" : "2021-01-30T20:30:00Z",
     "type" : "goal",
-    "matchId" : "11",
     "minute" : 33
   } ],
   "status" : "done"
@@ -887,56 +821,123 @@
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="updateMatch"></a>
+  <div class="method"><a name="matchIds"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="put"><code class="huge"><span class="http-method">put</span> /match</code></pre></div>
-    <div class="method-summary">Update an existing match (<span class="nickname">updateMatch</span>)</div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /matches/list/{matchIds}</code></pre></div>
+    <div class="method-summary">Finds matches by list of IDs (<span class="nickname">matchIds</span>)</div>
     <div class="method-notes"></div>
 
-
-    <h3 class="field-label">Consumes</h3>
-    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
-    <ul>
-      <li><code>application/json</code></li>
-      <li><code>application/yaml</code></li>
-    </ul>
-
-    <h3 class="field-label">Request body</h3>
+    <h3 class="field-label">Path parameters</h3>
     <div class="field-items">
-      <div class="param">body <a href="#Match">Match</a> (required)</div>
+      <div class="param">matchIds (required)</div>
       
-            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Match object that needs to be updated in the system </div>
-                </div>  <!-- field-items -->
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; IDs of matches to return format: int64</div>    </div>  <!-- field-items -->
 
 
 
 
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Match">Match</a>]
+      
+    </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "start" : "2021-01-30T20:30:00Z",
+  "referee" : "Sapir Berman",
+  "awayTeamGoals" : 1,
+  "seasonId" : "12",
+  "leagueId" : "11",
+  "stadium" : {
+    "name" : "Sami Offer",
+    "id" : "11"
+  },
+  "homeTeam" : [ {
+    "id" : "10",
+    "name" : "Maccabi Haifa",
+    "stadiumId" : "11",
+    "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
+  } ],
+  "id" : "10",
+  "homeTeamGoals" : 2,
+  "roundId" : "13",
+  "events" : [ {
+    "description" : "yellow card to Raz Meir",
+    "id" : "10",
+    "type" : "goal",
+    "minute" : 33
+  }, {
+    "description" : "yellow card to Raz Meir",
+    "id" : "10",
+    "type" : "goal",
+    "minute" : 33
+  } ],
+  "status" : "done"
+}, {
+  "start" : "2021-01-30T20:30:00Z",
+  "referee" : "Sapir Berman",
+  "awayTeamGoals" : 1,
+  "seasonId" : "12",
+  "leagueId" : "11",
+  "stadium" : {
+    "name" : "Sami Offer",
+    "id" : "11"
+  },
+  "homeTeam" : [ {
+    "id" : "10",
+    "name" : "Maccabi Haifa",
+    "stadiumId" : "11",
+    "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
+  } ],
+  "id" : "10",
+  "homeTeamGoals" : 2,
+  "roundId" : "13",
+  "events" : [ {
+    "description" : "yellow card to Raz Meir",
+    "id" : "10",
+    "type" : "goal",
+    "minute" : 33
+  }, {
+    "description" : "yellow card to Raz Meir",
+    "id" : "10",
+    "type" : "goal",
+    "minute" : 33
+  } ],
+  "status" : "done"
+} ]</code></pre>
 
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/yaml</code></li>
+      <li><code>application/json</code></li>
+    </ul>
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
-    Match was updated successfully
-        <a href="#"></a>
+    successful operation
+        
     <h4 class="field-label">400</h4>
-    Invalid ID supplied
+    Invalid team id value
         <a href="#"></a>
     <h4 class="field-label">404</h4>
-    Match not found
-        <a href="#"></a>
-    <h4 class="field-label">405</h4>
-    Validation exception
+    matches not found
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <h1><a name="Player">Player</a></h1>
+  <h1><a name="Players">Players</a></h1>
   <div class="method"><a name="findPlayersByTeam"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /player/findByTeam/{teamId}</code></pre></div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /players/findByTeam/{teamId}</code></pre></div>
     <div class="method-summary">Finds players by team (<span class="nickname">findPlayersByTeam</span>)</div>
     <div class="method-notes"></div>
 
@@ -968,6 +969,12 @@
   "weight" : 79,
   "id" : "10",
   "common name" : "Josh Cohen",
+  "team" : [ {
+    "id" : "10",
+    "name" : "Maccabi Haifa",
+    "stadiumId" : "11",
+    "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
+  } ],
   "position" : "Goalkeeper",
   "date of birth" : "August 18, 1992",
   "picture" : "https://static.football.co.il/wp-content/themes/kingclub-theme/images/players/26-99-353088.png"
@@ -978,6 +985,12 @@
   "weight" : 79,
   "id" : "10",
   "common name" : "Josh Cohen",
+  "team" : [ {
+    "id" : "10",
+    "name" : "Maccabi Haifa",
+    "stadiumId" : "11",
+    "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
+  } ],
   "position" : "Goalkeeper",
   "date of birth" : "August 18, 1992",
   "picture" : "https://static.football.co.il/wp-content/themes/kingclub-theme/images/players/26-99-353088.png"
@@ -1006,7 +1019,7 @@
   <div class="method"><a name="getPlayerById"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /player/{playerId}</code></pre></div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /players/{playerId}</code></pre></div>
     <div class="method-summary">Find player by ID (<span class="nickname">getPlayerById</span>)</div>
     <div class="method-notes">Returns a single player</div>
 
@@ -1038,6 +1051,12 @@
   "weight" : 79,
   "id" : "10",
   "common name" : "Josh Cohen",
+  "team" : [ {
+    "id" : "10",
+    "name" : "Maccabi Haifa",
+    "stadiumId" : "11",
+    "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
+  } ],
   "position" : "Goalkeeper",
   "date of birth" : "August 18, 1992",
   "picture" : "https://static.football.co.il/wp-content/themes/kingclub-theme/images/players/26-99-353088.png"
@@ -1066,7 +1085,7 @@
   <div class="method"><a name="queryPlayers"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /player/query</code></pre></div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /players/query</code></pre></div>
     <div class="method-summary">Query players (<span class="nickname">queryPlayers</span>)</div>
     <div class="method-notes"></div>
 
@@ -1104,6 +1123,12 @@
   "weight" : 79,
   "id" : "10",
   "common name" : "Josh Cohen",
+  "team" : [ {
+    "id" : "10",
+    "name" : "Maccabi Haifa",
+    "stadiumId" : "11",
+    "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
+  } ],
   "position" : "Goalkeeper",
   "date of birth" : "August 18, 1992",
   "picture" : "https://static.football.co.il/wp-content/themes/kingclub-theme/images/players/26-99-353088.png"
@@ -1114,6 +1139,12 @@
   "weight" : 79,
   "id" : "10",
   "common name" : "Josh Cohen",
+  "team" : [ {
+    "id" : "10",
+    "name" : "Maccabi Haifa",
+    "stadiumId" : "11",
+    "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
+  } ],
   "position" : "Goalkeeper",
   "date of birth" : "August 18, 1992",
   "picture" : "https://static.football.co.il/wp-content/themes/kingclub-theme/images/players/26-99-353088.png"
@@ -1162,14 +1193,72 @@
 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>[ {
+    <pre class="example"><code>{
   "id" : "10",
-  "name" : "semi-final",
-  "leagueId" : "11",
-  "seasonId" : "12",
-  "isCurrentRound" : true,
-  "start" : "2021-01-30T20:30:00Z"
-} ]</code></pre>
+  "matches" : [ {
+    "start" : "2021-01-30T20:30:00Z",
+    "referee" : "Sapir Berman",
+    "awayTeamGoals" : 1,
+    "seasonId" : "12",
+    "leagueId" : "11",
+    "stadium" : {
+      "name" : "Sami Offer",
+      "id" : "11"
+    },
+    "homeTeam" : [ {
+      "id" : "10",
+      "name" : "Maccabi Haifa",
+      "stadiumId" : "11",
+      "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
+    } ],
+    "id" : "10",
+    "homeTeamGoals" : 2,
+    "roundId" : "13",
+    "events" : [ {
+      "description" : "yellow card to Raz Meir",
+      "id" : "10",
+      "type" : "goal",
+      "minute" : 33
+    }, {
+      "description" : "yellow card to Raz Meir",
+      "id" : "10",
+      "type" : "goal",
+      "minute" : 33
+    } ],
+    "status" : "done"
+  }, {
+    "start" : "2021-01-30T20:30:00Z",
+    "referee" : "Sapir Berman",
+    "awayTeamGoals" : 1,
+    "seasonId" : "12",
+    "leagueId" : "11",
+    "stadium" : {
+      "name" : "Sami Offer",
+      "id" : "11"
+    },
+    "homeTeam" : [ {
+      "id" : "10",
+      "name" : "Maccabi Haifa",
+      "stadiumId" : "11",
+      "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
+    } ],
+    "id" : "10",
+    "homeTeamGoals" : 2,
+    "roundId" : "13",
+    "events" : [ {
+      "description" : "yellow card to Raz Meir",
+      "id" : "10",
+      "type" : "goal",
+      "minute" : 33
+    }, {
+      "description" : "yellow card to Raz Meir",
+      "id" : "10",
+      "type" : "goal",
+      "minute" : 33
+    } ],
+    "status" : "done"
+  } ]
+}</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
@@ -1191,122 +1280,48 @@
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <h1><a name="Season">Season</a></h1>
-  <div class="method"><a name="getSeasonById"></a>
+  <h1><a name="Scores">Scores</a></h1>
+  <div class="method"><a name="createScore"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /season/{seasonId}</code></pre></div>
-    <div class="method-summary">Find season by ID (<span class="nickname">getSeasonById</span>)</div>
-    <div class="method-notes">Returns a single season</div>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /scores/add</code></pre></div>
+    <div class="method-summary">Add score to a match (<span class="nickname">createScore</span>)</div>
+    <div class="method-notes"></div>
 
-    <h3 class="field-label">Path parameters</h3>
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/yaml</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
     <div class="field-items">
-      <div class="param">seasonId (required)</div>
+      <div class="param">body <a href="#Score">Score</a> (required)</div>
       
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of season to return format: int64</div>    </div>  <!-- field-items -->
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Score object that needs to be added to the system </div>
+                </div>  <!-- field-items -->
 
 
 
 
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#Season">Season</a>
-      
-    </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>[ {
-  "id" : "10",
-  "name" : "2015-2016",
-  "leagueId" : "11",
-  "currentRoundId" : "12",
-  "isCurrentSeason" : true
-} ]</code></pre>
 
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>application/yaml</code></li>
-      <li><code>application/json</code></li>
-    </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    successful operation
-        <a href="#Season">Season</a>
-    <h4 class="field-label">400</h4>
-    Invalid ID supplied
-        <a href="#"></a>
-    <h4 class="field-label">404</h4>
-    Season not found
+    <h4 class="field-label">201</h4>
+    A new score have been created
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <h1><a name="Stadium">Stadium</a></h1>
-  <div class="method"><a name="getStadiumById"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /stadium/{stadiumId}</code></pre></div>
-    <div class="method-summary">Find stadium by ID (<span class="nickname">getStadiumById</span>)</div>
-    <div class="method-notes">Returns a single stadium</div>
-
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">stadiumId (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of stadium to return format: int64</div>    </div>  <!-- field-items -->
-
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#Stadium">Stadium</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>[ {
-  "id" : "10",
-  "name" : "Sami Ofer"
-} ]</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>application/yaml</code></li>
-      <li><code>application/json</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    successful operation
-        <a href="#Stadium">Stadium</a>
-    <h4 class="field-label">400</h4>
-    Invalid ID supplied
-        <a href="#"></a>
-    <h4 class="field-label">404</h4>
-    Stadium not found
-        <a href="#"></a>
-  </div> <!-- method -->
-  <hr/>
-  <h1><a name="Team">Team</a></h1>
+  <h1><a name="Teams">Teams</a></h1>
   <div class="method"><a name="getTeamById"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /team/{teamId}</code></pre></div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /teams/{teamId}</code></pre></div>
     <div class="method-summary">Find team by ID (<span class="nickname">getTeamById</span>)</div>
     <div class="method-notes">Returns a single team</div>
 
@@ -1343,7 +1358,6 @@
     the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>application/yaml</code></li>
-      <li><code>application/json</code></li>
     </ul>
 
     <h3 class="field-label">Responses</h3>
@@ -1361,7 +1375,7 @@
   <div class="method"><a name="queryTeams"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /team/query</code></pre></div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /teams/query</code></pre></div>
     <div class="method-summary">Query teams (<span class="nickname">queryTeams</span>)</div>
     <div class="method-notes"></div>
 
@@ -1414,163 +1428,13 @@
         
   </div> <!-- method -->
   <hr/>
-  <h1><a name="User">User</a></h1>
-  <div class="method"><a name="addFavoriteMatch"></a>
+  <h1><a name="Users">Users</a></h1>
+  <div class="method"><a name="favorite match"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /user/{userId}/addFavoriteMatch/{matchId}</code></pre></div>
-    <div class="method-summary">add a favorite match (<span class="nickname">addFavoriteMatch</span>)</div>
-    <div class="method-notes"></div>
-
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">userId (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of user format: int64</div>      <div class="param">matchId (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of match to add to favotires format: int64</div>    </div>  <!-- field-items -->
-
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#ApiResponse">ApiResponse</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "code" : 404,
-  "type" : "page not found",
-  "message" : "the requierd page was not found"
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>application/yaml</code></li>
-      <li><code>application/json</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">201</h4>
-    Match was successfully added
-        <a href="#ApiResponse">ApiResponse</a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="addFavoritePlayer"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /user/{userId}/addFavoritePlayer/{playerId}</code></pre></div>
-    <div class="method-summary">add a favorite player (<span class="nickname">addFavoritePlayer</span>)</div>
-    <div class="method-notes"></div>
-
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">userId (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of user format: int64</div>      <div class="param">playerId (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of player to ad to favotires format: int64</div>    </div>  <!-- field-items -->
-
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#ApiResponse">ApiResponse</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "code" : 404,
-  "type" : "page not found",
-  "message" : "the requierd page was not found"
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>application/yaml</code></li>
-      <li><code>application/json</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">201</h4>
-    Player was successfully added
-        <a href="#ApiResponse">ApiResponse</a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="addFavoriteTeam"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /user/{userId}/addFavoriteTeam/{teamId}</code></pre></div>
-    <div class="method-summary">add a favorite team (<span class="nickname">addFavoriteTeam</span>)</div>
-    <div class="method-notes"></div>
-
-    <h3 class="field-label">Path parameters</h3>
-    <div class="field-items">
-      <div class="param">userId (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of user format: int64</div>      <div class="param">teamId (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of team to add to favotires format: int64</div>    </div>  <!-- field-items -->
-
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#ApiResponse">ApiResponse</a>
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "code" : 404,
-  "type" : "page not found",
-  "message" : "the requierd page was not found"
-}</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>application/yaml</code></li>
-      <li><code>application/json</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">201</h4>
-    Team was successfully added
-        <a href="#ApiResponse">ApiResponse</a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="createUser"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /user</code></pre></div>
-    <div class="method-summary">Create user (<span class="nickname">createUser</span>)</div>
-    <div class="method-notes">This can only be done by the logged in user.</div>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /users/favoriteMatch</code></pre></div>
+    <div class="method-summary">add favorite match (<span class="nickname">favorite match</span>)</div>
+    <div class="method-notes">A new favorite match from the client is added to the server</div>
 
 
     <h3 class="field-label">Consumes</h3>
@@ -1582,9 +1446,9 @@
 
     <h3 class="field-label">Request body</h3>
     <div class="field-items">
-      <div class="param">body <a href="#User">User</a> (required)</div>
+      <div class="param">body <a href="#Match">Match</a> (required)</div>
       
-            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Created user object </div>
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Created match object </div>
                 </div>  <!-- field-items -->
 
 
@@ -1597,197 +1461,58 @@
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">201</h4>
-    A new uswe has been added
+    A new user has been added
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="getUserById"></a>
+  <div class="method"><a name="favoriteMatch"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /user/{userId}</code></pre></div>
-    <div class="method-summary">Find user by ID (<span class="nickname">getUserById</span>)</div>
-    <div class="method-notes">Returns a single user</div>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /users/favoriteMatch/{matchId}</code></pre></div>
+    <div class="method-summary">delete a favorite match (<span class="nickname">favoriteMatch</span>)</div>
+    <div class="method-notes"></div>
 
     <h3 class="field-label">Path parameters</h3>
     <div class="field-items">
-      <div class="param">userId (required)</div>
+      <div class="param">matchId (required)</div>
       
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of user to return format: int64</div>    </div>  <!-- field-items -->
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; delete favorite match by match id format: int64</div>    </div>  <!-- field-items -->
 
 
 
 
 
 
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      <a href="#User">User</a>
-      
-    </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
-  "lastName" : "Katan",
-  "country" : "Israel",
-  "role" : "user",
-  "favoritePlayers" : [ {
-    "country of birth" : "USA",
-    "nationality" : "American",
-    "hight" : 1.86,
-    "weight" : 79,
-    "id" : "10",
-    "common name" : "Josh Cohen",
-    "position" : "Goalkeeper",
-    "date of birth" : "August 18, 1992",
-    "picture" : "https://static.football.co.il/wp-content/themes/kingclub-theme/images/players/26-99-353088.png"
-  }, {
-    "country of birth" : "USA",
-    "nationality" : "American",
-    "hight" : 1.86,
-    "weight" : 79,
-    "id" : "10",
-    "common name" : "Josh Cohen",
-    "position" : "Goalkeeper",
-    "date of birth" : "August 18, 1992",
-    "picture" : "https://static.football.co.il/wp-content/themes/kingclub-theme/images/players/26-99-353088.png"
-  } ],
-  "favoriteTeams" : [ [ {
-    "id" : "10",
-    "name" : "Maccabi Haifa",
-    "stadiumId" : "11",
-    "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
-  } ], [ {
-    "id" : "10",
-    "name" : "Maccabi Haifa",
-    "stadiumId" : "11",
-    "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
-  } ] ],
-  "userName" : "Yaniv20",
-  "picture" : "https://secure.cache.images.core.optasports.com/soccer/players/150x150/56064.png",
-  "firstName" : "Yaniv",
-  "password" : "yanivk20",
-  "isLoggedIn" : true,
-  "id" : "10",
-  "email" : "yaniv20@gmail.com",
-  "favoriteMatches" : [ {
-    "start" : "2021-01-30T20:30:00Z",
-    "awayTeamGoals" : 1,
-    "seasonId" : "12",
-    "leagueId" : "11",
-    "stadium" : [ {
-      "id" : "10",
-      "name" : "Sami Ofer"
-    } ],
-    "homeTeam" : [ {
-      "id" : "10",
-      "name" : "Maccabi Haifa",
-      "stadiumId" : "11",
-      "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
-    } ],
-    "end" : "2021-01-30T21:30:00Z",
-    "id" : "10",
-    "homeTeamGoals" : 2,
-    "roundId" : "13",
-    "events" : [ {
-      "description" : "yellow card to Raz Meir",
-      "id" : "10",
-      "time" : "2021-01-30T20:30:00Z",
-      "type" : "goal",
-      "matchId" : "11",
-      "minute" : 33
-    }, {
-      "description" : "yellow card to Raz Meir",
-      "id" : "10",
-      "time" : "2021-01-30T20:30:00Z",
-      "type" : "goal",
-      "matchId" : "11",
-      "minute" : 33
-    } ],
-    "status" : "done"
-  }, {
-    "start" : "2021-01-30T20:30:00Z",
-    "awayTeamGoals" : 1,
-    "seasonId" : "12",
-    "leagueId" : "11",
-    "stadium" : [ {
-      "id" : "10",
-      "name" : "Sami Ofer"
-    } ],
-    "homeTeam" : [ {
-      "id" : "10",
-      "name" : "Maccabi Haifa",
-      "stadiumId" : "11",
-      "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
-    } ],
-    "end" : "2021-01-30T21:30:00Z",
-    "id" : "10",
-    "homeTeamGoals" : 2,
-    "roundId" : "13",
-    "events" : [ {
-      "description" : "yellow card to Raz Meir",
-      "id" : "10",
-      "time" : "2021-01-30T20:30:00Z",
-      "type" : "goal",
-      "matchId" : "11",
-      "minute" : 33
-    }, {
-      "description" : "yellow card to Raz Meir",
-      "id" : "10",
-      "time" : "2021-01-30T20:30:00Z",
-      "type" : "goal",
-      "matchId" : "11",
-      "minute" : 33
-    } ],
-    "status" : "done"
-  } ]
-}</code></pre>
 
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>application/yaml</code></li>
-      <li><code>application/json</code></li>
-    </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    successful operation
-        <a href="#User">User</a>
     <h4 class="field-label">400</h4>
     Invalid ID supplied
         <a href="#"></a>
     <h4 class="field-label">404</h4>
-    user not found
+    match not found
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="loginUser"></a>
+  <div class="method"><a name="favoriteMatches"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /user/login</code></pre></div>
-    <div class="method-summary">Logs user into the system (<span class="nickname">loginUser</span>)</div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /users/favoriteMatches</code></pre></div>
+    <div class="method-summary">get the favorite matches (<span class="nickname">favoriteMatches</span>)</div>
     <div class="method-notes"></div>
 
 
 
 
 
-    <h3 class="field-label">Query parameters</h3>
-    <div class="field-items">
-      <div class="param">username (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The user name for login </div>      <div class="param">password (required)</div>
-      
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The password for login in clear text </div>    </div>  <!-- field-items -->
 
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      <a href="#User">User</a>
+      <a href="#Match">Match</a>
       
     </div>
 
@@ -1796,119 +1521,36 @@
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "lastName" : "Katan",
-  "country" : "Israel",
-  "role" : "user",
-  "favoritePlayers" : [ {
-    "country of birth" : "USA",
-    "nationality" : "American",
-    "hight" : 1.86,
-    "weight" : 79,
+  "start" : "2021-01-30T20:30:00Z",
+  "referee" : "Sapir Berman",
+  "awayTeamGoals" : 1,
+  "seasonId" : "12",
+  "leagueId" : "11",
+  "stadium" : {
+    "name" : "Sami Offer",
+    "id" : "11"
+  },
+  "homeTeam" : [ {
     "id" : "10",
-    "common name" : "Josh Cohen",
-    "position" : "Goalkeeper",
-    "date of birth" : "August 18, 1992",
-    "picture" : "https://static.football.co.il/wp-content/themes/kingclub-theme/images/players/26-99-353088.png"
-  }, {
-    "country of birth" : "USA",
-    "nationality" : "American",
-    "hight" : 1.86,
-    "weight" : 79,
-    "id" : "10",
-    "common name" : "Josh Cohen",
-    "position" : "Goalkeeper",
-    "date of birth" : "August 18, 1992",
-    "picture" : "https://static.football.co.il/wp-content/themes/kingclub-theme/images/players/26-99-353088.png"
+    "name" : "Maccabi Haifa",
+    "stadiumId" : "11",
+    "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
   } ],
-  "favoriteTeams" : [ [ {
-    "id" : "10",
-    "name" : "Maccabi Haifa",
-    "stadiumId" : "11",
-    "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
-  } ], [ {
-    "id" : "10",
-    "name" : "Maccabi Haifa",
-    "stadiumId" : "11",
-    "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
-  } ] ],
-  "userName" : "Yaniv20",
-  "picture" : "https://secure.cache.images.core.optasports.com/soccer/players/150x150/56064.png",
-  "firstName" : "Yaniv",
-  "password" : "yanivk20",
-  "isLoggedIn" : true,
   "id" : "10",
-  "email" : "yaniv20@gmail.com",
-  "favoriteMatches" : [ {
-    "start" : "2021-01-30T20:30:00Z",
-    "awayTeamGoals" : 1,
-    "seasonId" : "12",
-    "leagueId" : "11",
-    "stadium" : [ {
-      "id" : "10",
-      "name" : "Sami Ofer"
-    } ],
-    "homeTeam" : [ {
-      "id" : "10",
-      "name" : "Maccabi Haifa",
-      "stadiumId" : "11",
-      "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
-    } ],
-    "end" : "2021-01-30T21:30:00Z",
+  "homeTeamGoals" : 2,
+  "roundId" : "13",
+  "events" : [ {
+    "description" : "yellow card to Raz Meir",
     "id" : "10",
-    "homeTeamGoals" : 2,
-    "roundId" : "13",
-    "events" : [ {
-      "description" : "yellow card to Raz Meir",
-      "id" : "10",
-      "time" : "2021-01-30T20:30:00Z",
-      "type" : "goal",
-      "matchId" : "11",
-      "minute" : 33
-    }, {
-      "description" : "yellow card to Raz Meir",
-      "id" : "10",
-      "time" : "2021-01-30T20:30:00Z",
-      "type" : "goal",
-      "matchId" : "11",
-      "minute" : 33
-    } ],
-    "status" : "done"
+    "type" : "goal",
+    "minute" : 33
   }, {
-    "start" : "2021-01-30T20:30:00Z",
-    "awayTeamGoals" : 1,
-    "seasonId" : "12",
-    "leagueId" : "11",
-    "stadium" : [ {
-      "id" : "10",
-      "name" : "Sami Ofer"
-    } ],
-    "homeTeam" : [ {
-      "id" : "10",
-      "name" : "Maccabi Haifa",
-      "stadiumId" : "11",
-      "teamLogo" : "https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png"
-    } ],
-    "end" : "2021-01-30T21:30:00Z",
+    "description" : "yellow card to Raz Meir",
     "id" : "10",
-    "homeTeamGoals" : 2,
-    "roundId" : "13",
-    "events" : [ {
-      "description" : "yellow card to Raz Meir",
-      "id" : "10",
-      "time" : "2021-01-30T20:30:00Z",
-      "type" : "goal",
-      "matchId" : "11",
-      "minute" : 33
-    }, {
-      "description" : "yellow card to Raz Meir",
-      "id" : "10",
-      "time" : "2021-01-30T20:30:00Z",
-      "type" : "goal",
-      "matchId" : "11",
-      "minute" : 33
-    } ],
-    "status" : "done"
-  } ]
+    "type" : "goal",
+    "minute" : 33
+  } ],
+  "status" : "done"
 }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -1921,35 +1563,8 @@
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
-    successful operation
-        <a href="#User">User</a>
-    <h4 class="field-label">400</h4>
-    Invalid username/password supplied
-        <a href="#"></a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="logoutUser"></a>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /user/logout</code></pre></div>
-    <div class="method-summary">Logs out current logged in user session (<span class="nickname">logoutUser</span>)</div>
-    <div class="method-notes"></div>
-
-
-
-
-
-
-
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">default</h4>
-    successful operation
-        <a href="#"></a>
+    successfully matches
+        <a href="#Match">Match</a>
   </div> <!-- method -->
   <hr/>
 
@@ -1958,48 +1573,29 @@
 
   <h3>Table of Contents</h3>
   <ol>
-    <li><a href="#ApiResponse"><code>ApiResponse</code></a></li>
-    <li><a href="#Coach"><code>Coach</code></a></li>
+    <li><a href="#Event"><code>Event</code></a></li>
     <li><a href="#League"><code>League</code></a></li>
     <li><a href="#Match"><code>Match</code></a></li>
-    <li><a href="#MatchEvent"><code>MatchEvent</code></a></li>
     <li><a href="#Player"><code>Player</code></a></li>
     <li><a href="#Round"><code>Round</code></a></li>
-    <li><a href="#Season"><code>Season</code></a></li>
+    <li><a href="#Score"><code>Score</code></a></li>
     <li><a href="#Stadium"><code>Stadium</code></a></li>
     <li><a href="#Team"><code>Team</code></a></li>
     <li><a href="#User"><code>User</code></a></li>
   </ol>
 
   <div class="model">
-    <h3><a name="ApiResponse"><code>ApiResponse</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">code (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-          <div class="param-desc"><span class="param-type">example: 404</span></div>
-<div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: page not found</span></div>
-<div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: the requierd page was not found</span></div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="Coach"><code>Coach</code></a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="Event"><code>Event</code></a> <a class="up" href="#__Models">Up</a></h3>
     
     <div class="field-items">
       <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
           <div class="param-desc"><span class="param-type">example: 10</span></div>
-<div class="param">common name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: Barak Bachar</span></div>
-<div class="param">nationality (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: Israeli</span></div>
-<div class="param">date of birth (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: September 21, 1979</span></div>
-<div class="param">country of birth (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: Israel</span></div>
-<div class="param">team (optional)</div><div class="param-desc"><span class="param-type"><a href="#Team">Team</a></span>  </div>
-<div class="param">picture (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: http://mhaifafc.com/pics/2020-2021/%D7%A6%D7%95%D7%95%D7%AA%20%D7%9E%D7%A7%D7%A6%D7%95%D7%A2%D7%99/%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA%20%D7%A6%D7%A8%D7%95%D7%91%D7%95%D7%AA/%D7%91%D7%9B%D7%A8.png</span></div>
+<div class="param">minute (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 33</span></div>
+<div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: yellow card to Raz Meir</span></div>
+<div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Event Type </div>
+          <div class="param-desc"><span class="param-type">example: goal</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -2012,6 +1608,10 @@
           <div class="param-desc"><span class="param-type">example: Permier league</span></div>
 <div class="param">currentSeasonId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
           <div class="param-desc"><span class="param-type">example: 11</span></div>
+<div class="param">currentRoundId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 123</span></div>
+<div class="param">currentSeasonName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 2020/2021</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -2029,11 +1629,11 @@
 <div class="param">stadium (optional)</div><div class="param-desc"><span class="param-type"><a href="#Stadium">Stadium</a></span>  </div>
 <div class="param">homeTeam (optional)</div><div class="param-desc"><span class="param-type"><a href="#Team">Team</a></span>  </div>
 <div class="param">awayTeam (optional)</div><div class="param-desc"><span class="param-type"><a href="#Team">Team</a></span>  </div>
-<div class="param">events (optional)</div><div class="param-desc"><span class="param-type"><a href="#MatchEvent">array[MatchEvent]</a></span>  </div>
+<div class="param">referee (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Sapir Berman</span></div>
+<div class="param">events (optional)</div><div class="param-desc"><span class="param-type"><a href="#Event">array[Event]</a></span>  </div>
 <div class="param">start (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
           <div class="param-desc"><span class="param-type">example: 2021-01-30T20:30Z</span></div>
-<div class="param">end (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
-          <div class="param-desc"><span class="param-type">example: 2021-01-30T21:30Z</span></div>
 <div class="param">homeTeamGoals (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
           <div class="param-desc"><span class="param-type">example: 2</span></div>
 <div class="param">awayTeamGoals (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
@@ -2042,26 +1642,6 @@
         <div class="param-enum-header">Enum:</div>
         <div class="param-enum">future</div><div class="param-enum">playing</div><div class="param-enum">done</div>
           <div class="param-desc"><span class="param-type">example: done</span></div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="MatchEvent"><code>MatchEvent</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: 10</span></div>
-<div class="param">matchId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: 11</span></div>
-<div class="param">time (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
-          <div class="param-desc"><span class="param-type">example: 2021-01-30T20:30Z</span></div>
-<div class="param">minute (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-          <div class="param-desc"><span class="param-type">example: 33</span></div>
-<div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: yellow card to Raz Meir</span></div>
-<div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Event Type </div>
-        <div class="param-enum-header">Enum:</div>
-        <div class="param-enum">goal</div><div class="param-enum">offside</div><div class="param-enum">foul</div><div class="param-enum">red card</div><div class="param-enum">yellow card</div><div class="param-enum">injury</div><div class="param-enum">substitution</div>
-          <div class="param-desc"><span class="param-type">example: goal</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -2095,34 +1675,21 @@
     <div class="field-items">
       <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
           <div class="param-desc"><span class="param-type">example: 10</span></div>
-<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: semi-final</span></div>
-<div class="param">leagueId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: 11</span></div>
-<div class="param">seasonId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: 12</span></div>
-<div class="param">isCurrentRound (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: true</span></div>
-<div class="param">start (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
-          <div class="param-desc"><span class="param-type">example: 2021-01-30T20:30Z</span></div>
-<div class="param">end (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
-          <div class="param-desc"><span class="param-type">example: 2021-01-30T21:30Z</span></div>
+<div class="param">matches (optional)</div><div class="param-desc"><span class="param-type"><a href="#Match">array[Match]</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="Season"><code>Season</code></a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="Score"><code>Score</code></a> <a class="up" href="#__Models">Up</a></h3>
     
     <div class="field-items">
       <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 5</span></div>
+<div class="param">matchId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
           <div class="param-desc"><span class="param-type">example: 10</span></div>
-<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: 2015-2016</span></div>
-<div class="param">leagueId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: 11</span></div>
-<div class="param">currentRoundId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: 3</span></div>
-<div class="param">isCurrentSeason (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: true</span></div>
+<div class="param">home (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 2</span></div>
+<div class="param">away (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -2130,9 +1697,9 @@
     
     <div class="field-items">
       <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: 10</span></div>
+          <div class="param-desc"><span class="param-type">example: 11</span></div>
 <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: Sami Ofer</span></div>
+          <div class="param-desc"><span class="param-type">example: Sami Offer</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -2145,6 +1712,8 @@
           <div class="param-desc"><span class="param-type">example: Maccabi Haifa</span></div>
 <div class="param">stadiumId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
           <div class="param-desc"><span class="param-type">example: 11</span></div>
+<div class="param">stadiumName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Sami Offer</span></div>
 <div class="param">teamLogo (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
           <div class="param-desc"><span class="param-type">example: https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png</span></div>
     </div>  <!-- field-items -->
@@ -2155,9 +1724,7 @@
     <div class="field-items">
       <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
           <div class="param-desc"><span class="param-type">example: 10</span></div>
-<div class="param">favoriteTeams (optional)</div><div class="param-desc"><span class="param-type"><a href="#Team">array[Team]</a></span>  </div>
 <div class="param">favoriteMatches (optional)</div><div class="param-desc"><span class="param-type"><a href="#Match">array[Match]</a></span>  </div>
-<div class="param">favoritePlayers (optional)</div><div class="param-desc"><span class="param-type"><a href="#Player">array[Player]</a></span>  </div>
 <div class="param">userName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
           <div class="param-desc"><span class="param-type">example: Yaniv20</span></div>
 <div class="param">firstName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
@@ -2172,12 +1739,8 @@
           <div class="param-desc"><span class="param-type">example: yaniv20@gmail.com</span></div>
 <div class="param">picture (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
           <div class="param-desc"><span class="param-type">example: https://secure.cache.images.core.optasports.com/soccer/players/150x150/56064.png</span></div>
-<div class="param">isLoggedIn (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: true</span></div>
-<div class="param">role (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Role </div>
-        <div class="param-enum-header">Enum:</div>
-        <div class="param-enum">user</div><div class="param-enum">manager</div>
-          <div class="param-desc"><span class="param-type">example: user</span></div>
+<div class="param">isAdmin (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: false</span></div>
     </div>  <!-- field-items -->
   </div>
   </body>

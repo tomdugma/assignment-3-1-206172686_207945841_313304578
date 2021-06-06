@@ -9,55 +9,40 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 1.0.0
+  version: 3.0.0
 externalDocs:
   description: Find out more about Swagger
   url: http://swagger.io
 servers:
-- url: https://virtserver.swaggerhub.com/saritholl/SUPERLIGA/1.0.0
+- url: https://virtserver.swaggerhub.com/saritholl/SUPERLIGA/3.0.0
   description: SwaggerHub API Auto Mocking
 tags:
 - name: league
-  description: Data about the Leagues
-  externalDocs:
-    description: Find out more
-    url: http://swagger.io
-- name: season
-  description: Represents a season by name, date and teams. A serius of matches between all the different teams.
+  description: Data about the League
 - name: round
   description: Contains all the maches of a specific round (stage).
-- name: match
+- name: matches
   description: Represents a mach between two teams, home team VS away team.
-- name: stadium
-  description: The location where the matches accure.
-- name: team
+- name: teams
   description: Contains players and coaches. commpiting agains other teams during a season
-- name: user
+- name: users
   description: Every person who uses the platform and registered
-- name: player
+- name: auth
+  description: Register, login users, logout
+- name: players
   description: Play within a team, every player as a position on the court
-- name: coach
-  description: Training a coaching the players of single team.
-- name: matchEvent
+- name: events
   description: Represent every event happened in a match
+- name: scores
+  description: Represent score of teams in a match
 paths:
-  /league/{leagueId}:
+  /league/getDetails:
     get:
       tags:
       - league
-      summary: Find league by ID
-      description: Returns a single league
-      operationId: getLeagueById
-      parameters:
-      - name: leagueId
-        in: path
-        description: ID of league to return
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
+      summary: Get League details
+      description: Returns theleague data
+      operationId: getLeagueDetails
       responses:
         "200":
           description: successful operation
@@ -68,42 +53,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/League'
-        "400":
-          description: Invalid ID supplied
-          content: {}
-        "404":
-          description: League not found
-  /season/{seasonId}:
-    get:
-      tags:
-      - season
-      summary: Find season by ID
-      description: Returns a single season
-      operationId: getSeasonById
-      parameters:
-      - name: seasonId
-        in: path
-        description: ID of season to return
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/yaml:
-              schema:
-                $ref: '#/components/schemas/Season'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Season'
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: Season not found
   /round/{roundId}:
     get:
       tags:
@@ -135,34 +84,10 @@ paths:
           description: Invalid ID supplied
         "404":
           description: Round not found
-  /match:
-    put:
-      tags:
-      - match
-      summary: Update an existing match
-      operationId: updateMatch
-      requestBody:
-        description: Match object that needs to be updated in the system
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Match'
-          application/yaml:
-            schema:
-              $ref: '#/components/schemas/Match'
-        required: true
-      responses:
-        "200":
-          description: Match was updated successfully
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: Match not found
-        "405":
-          description: Validation exception
+  /matches/add:
     post:
       tags:
-      - match
+      - matches
       summary: Add a new match to the system
       operationId: createMatch
       requestBody:
@@ -178,12 +103,10 @@ paths:
       responses:
         "201":
           description: A new match have been created
-        "400":
-          description: Invalid input
-  /match/{matchId}:
+  /matches/{matchId}:
     get:
       tags:
-      - match
+      - matches
       summary: Find match by ID
       description: Returns a single match
       operationId: getMatchById
@@ -211,10 +134,10 @@ paths:
           description: Invalid ID supplied
         "404":
           description: match not found
-  /match/findByTeam/{teamId}:
+  /matches/findByTeam/{teamId}:
     get:
       tags:
-      - match
+      - matches
       summary: Finds matches by team
       operationId: findMatchesByTeam
       parameters:
@@ -243,17 +166,18 @@ paths:
                   $ref: '#/components/schemas/Match'
         "400":
           description: Invalid team id value
-  /stadium/{stadiumId}:
+        "404":
+          description: team id not found
+  /matches/list/{matchIds}:
     get:
       tags:
-      - stadium
-      summary: Find stadium by ID
-      description: Returns a single stadium
-      operationId: getStadiumById
+      - matches
+      summary: Finds matches by list of IDs
+      operationId: matchIds
       parameters:
-      - name: stadiumId
+      - name: matchIds
         in: path
-        description: ID of stadium to return
+        description: IDs of matches to return
         required: true
         style: simple
         explode: false
@@ -266,18 +190,22 @@ paths:
           content:
             application/yaml:
               schema:
-                $ref: '#/components/schemas/Stadium'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Match'
             application/json:
               schema:
-                $ref: '#/components/schemas/Stadium'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Match'
         "400":
-          description: Invalid ID supplied
+          description: Invalid team id value
         "404":
-          description: Stadium not found
-  /team/{teamId}:
+          description: matches not found
+  /teams/{teamId}:
     get:
       tags:
-      - team
+      - teams
       summary: Find team by ID
       description: Returns a single team
       operationId: getTeamById
@@ -298,17 +226,14 @@ paths:
             application/yaml:
               schema:
                 $ref: '#/components/schemas/Team'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Team'
         "400":
           description: Invalid ID supplied
         "404":
           description: Team not found
-  /team/query:
+  /teams/query:
     get:
       tags:
-      - team
+      - teams
       summary: Query teams
       operationId: queryTeams
       parameters:
@@ -329,7 +254,7 @@ paths:
           type: array
           items:
             type: string
-            default: desc
+            default: asc
             enum:
             - asc
             - desc
@@ -347,12 +272,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Team'
-  /user:
+  /register:
     post:
       tags:
-      - user
-      summary: Create user
-      description: This can only be done by the logged in user.
+      - auth
+      summary: Create new user
+      description: A new user from the client is added to the server
       operationId: createUser
       requestBody:
         description: Created user object
@@ -367,11 +292,19 @@ paths:
       responses:
         "201":
           description: A new uswe has been added
-  /user/login:
-    get:
+          content:
+            application/yaml:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /login:
+    post:
       tags:
-      - user
-      summary: Logs user into the system
+      - auth
+      summary: Login an exist user
+      description: An exist user login to the system
       operationId: loginUser
       parameters:
       - name: username
@@ -391,8 +324,8 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: successful operation
+        "201":
+          description: User was found in the DB and authenitcated successfully
           content:
             application/yaml:
               schema:
@@ -400,19 +333,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-        "400":
-          description: Invalid username/password supplied
-  /user/{userId}:
-    get:
+  /logout:
+    post:
       tags:
-      - user
-      summary: Find user by ID
-      description: Returns a single user
-      operationId: getUserById
+      - auth
+      summary: logout a user from the system and delete his cookie
+      operationId: logoutUser
+      responses:
+        "201":
+          description: the user has ben successfully logged out
+  /users/favoriteMatch:
+    post:
+      tags:
+      - users
+      summary: add favorite match
+      description: A new favorite match from the client is added to the server
+      operationId: favorite match
+      requestBody:
+        description: Created match object
+        content:
+          application/yaml:
+            schema:
+              $ref: '#/components/schemas/Match'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Match'
+        required: true
+      responses:
+        "201":
+          description: A new user has been added
+  /users/favoriteMatch/{matchId}:
+    delete:
+      tags:
+      - users
+      summary: delete a favorite match
+      operationId: FavoriteMatch
       parameters:
-      - name: userId
+      - name: matchId
         in: path
-        description: ID of user to return
+        description: delete favorite match by match id
         required: true
         style: simple
         explode: false
@@ -420,137 +379,30 @@ paths:
           type: integer
           format: int64
       responses:
-        "200":
-          description: successful operation
-          content:
-            application/yaml:
-              schema:
-                $ref: '#/components/schemas/User'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
         "400":
           description: Invalid ID supplied
         "404":
-          description: user not found
-  /user/logout:
+          description: match not found
+  /users/favoriteMatches:
     get:
       tags:
-      - user
-      summary: Logs out current logged in user session
-      operationId: logoutUser
+      - users
+      summary: get the favorite matches
+      operationId: favoriteMatches
       responses:
-        default:
-          description: successful operation
-  /user/{userId}/addFavoritePlayer/{playerId}:
-    post:
-      tags:
-      - user
-      summary: add a favorite player
-      operationId: addFavoritePlayer
-      parameters:
-      - name: userId
-        in: path
-        description: ID of user
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
-      - name: playerId
-        in: path
-        description: ID of player to ad to favotires
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
-      responses:
-        "201":
-          description: Player was successfully added
+        "200":
+          description: successfully matches
           content:
             application/yaml:
               schema:
-                $ref: '#/components/schemas/ApiResponse'
+                $ref: '#/components/schemas/Match'
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponse'
-  /user/{userId}/addFavoriteMatch/{matchId}:
-    post:
-      tags:
-      - user
-      summary: add a favorite match
-      operationId: addFavoriteMatch
-      parameters:
-      - name: userId
-        in: path
-        description: ID of user
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
-      - name: matchId
-        in: path
-        description: ID of match to add to favotires
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
-      responses:
-        "201":
-          description: Match was successfully added
-          content:
-            application/yaml:
-              schema:
-                $ref: '#/components/schemas/ApiResponse'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiResponse'
-  /user/{userId}/addFavoriteTeam/{teamId}:
-    post:
-      tags:
-      - user
-      summary: add a favorite team
-      operationId: addFavoriteTeam
-      parameters:
-      - name: userId
-        in: path
-        description: ID of user
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
-      - name: teamId
-        in: path
-        description: ID of team to add to favotires
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
-      responses:
-        "201":
-          description: Team was successfully added
-          content:
-            application/yaml:
-              schema:
-                $ref: '#/components/schemas/ApiResponse'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ApiResponse'
-  /player/{playerId}:
+                $ref: '#/components/schemas/Match'
+  /players/{playerId}:
     get:
       tags:
-      - player
+      - players
       summary: Find player by ID
       description: Returns a single player
       operationId: getPlayerById
@@ -578,10 +430,10 @@ paths:
           description: Invalid ID supplied
         "404":
           description: player not found
-  /player/findByTeam/{teamId}:
+  /players/findByTeam/{teamId}:
     get:
       tags:
-      - player
+      - players
       summary: Finds players by team
       operationId: findPlayersByTeam
       parameters:
@@ -612,10 +464,10 @@ paths:
           description: Invalid team id value
         "404":
           description: Team not found
-  /player/query:
+  /players/query:
     get:
       tags:
-      - player
+      - players
       summary: Query players
       operationId: queryPlayers
       parameters:
@@ -652,7 +504,7 @@ paths:
           type: array
           items:
             type: string
-            default: desc
+            default: asc
             enum:
             - asc
             - desc
@@ -670,191 +522,44 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Player'
-  /coach/{coachId}:
-    get:
-      tags:
-      - coach
-      summary: Find coach by ID
-      description: Returns a single coach
-      operationId: getCoachById
-      parameters:
-      - name: coachId
-        in: path
-        description: ID of coach to return
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/yaml:
-              schema:
-                $ref: '#/components/schemas/Coach'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Coach'
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: Coach not found
-  /coach/query:
-    get:
-      tags:
-      - coach
-      summary: Query coaches
-      operationId: queryCoaches
-      parameters:
-      - name: search
-        in: query
-        description: search string
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-      - name: teamName
-        in: query
-        description: filter by team name
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-      - name: sort
-        in: query
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-            default: desc
-            enum:
-            - asc
-            - desc
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/yaml:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Coach'
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Coach'
-  /coach/findByTeam/{teamId}:
-    get:
-      tags:
-      - coach
-      summary: Find coach by team
-      operationId: findCoachByTeam
-      parameters:
-      - name: teamId
-        in: path
-        description: ID of team to return it's coach
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
-      responses:
-        "200":
-          description: Coach was successfully found
-          content:
-            application/yaml:
-              schema:
-                $ref: '#/components/schemas/Coach'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Coach'
-        "400":
-          description: Invalid team id value
-  /events/{eventId}:
-    get:
-      tags:
-      - event
-      summary: Find event by ID
-      description: Returns a single event
-      operationId: getEventById
-      parameters:
-      - name: eventId
-        in: path
-        description: ID of event to return
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-          format: int64
-      responses:
-        "200":
-          description: Event was successfully found
-          content:
-            application/yaml:
-              schema:
-                $ref: '#/components/schemas/MatchEvent'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MatchEvent'
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: MatchEvent not found
-  /event:
-    put:
-      tags:
-      - event
-      summary: Update an existing match event
-      operationId: updateMatchEvent
-      requestBody:
-        description: Match event object that needs to be updated in match diary
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MatchEvent'
-          application/yaml:
-            schema:
-              $ref: '#/components/schemas/MatchEvent'
-        required: true
-      responses:
-        "200":
-          description: MatchEvent was successfully update
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: MatchEvent not found
-        "405":
-          description: Validation exception
+  /events/add:
     post:
       tags:
-      - event
-      summary: Add a new event to match
-      operationId: createMatchEvent
+      - events
+      summary: Add a new event to the system
+      operationId: createEvent
       requestBody:
-        description: Match event object that needs to be added match diary
+        description: Event object that needs to be added to the system
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MatchEvent'
+              $ref: '#/components/schemas/Event'
           application/yaml:
             schema:
-              $ref: '#/components/schemas/MatchEvent'
+              $ref: '#/components/schemas/Event'
         required: true
       responses:
         "201":
-          description: Event was successfully added
-        "405":
-          description: Invalid input
+          description: A new event have been created
+  /scores/add:
+    post:
+      tags:
+      - scores
+      summary: Add score to a match
+      operationId: createScore
+      requestBody:
+        description: Score object that needs to be added to the system
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Score'
+          application/yaml:
+            schema:
+              $ref: '#/components/schemas/Score'
+        required: true
+      responses:
+        "201":
+          description: A new score have been created
 components:
   schemas:
     League:
@@ -869,75 +574,30 @@ components:
         currentSeasonId:
           type: string
           example: "11"
+        currentRoundId:
+          type: string
+          example: "123"
+        currentSeasonName:
+          type: string
+          example: 2020/2021
       example:
       - id: "10"
         name: Permier league
         currentSeasonId: "11"
+        currentRoundId: "123"
+        currentSeasonName: 2020/2021
       xml:
         name: League
-    Season:
-      type: object
-      properties:
-        id:
-          type: string
-          example: "10"
-        name:
-          type: string
-          example: 2015-2016
-        leagueId:
-          type: string
-          example: "11"
-        currentRoundId:
-          type: string
-          example: "3"
-        isCurrentSeason:
-          type: boolean
-          example: true
-          default: false
-      example:
-      - id: "10"
-        name: 2015-2016
-        leagueId: "11"
-        currentRoundId: "12"
-        isCurrentSeason: true
-      xml:
-        name: Season
     Round:
       type: object
       properties:
         id:
           type: string
           example: "10"
-        name:
-          type: string
-          example: semi-final
-        leagueId:
-          type: string
-          example: "11"
-        seasonId:
-          type: string
-          example: "12"
-        isCurrentRound:
-          type: boolean
-          example: true
-          default: false
-        start:
-          type: string
-          format: date-time
-          example: 2021-01-30T20:30:00Z
-        end:
-          type: string
-          format: date-time
-          example: 2021-01-30T21:30:00Z
-      example:
-      - id: "10"
-        name: semi-final
-        leagueId: "11"
-        seasonId: "12"
-        isCurrentRound: true
-        start: 2021-01-30T20:30:00Z
-      xml:
-        name: Round
+        matches:
+          type: array
+          items:
+            $ref: '#/components/schemas/Match'
     Match:
       type: object
       properties:
@@ -959,21 +619,20 @@ components:
           $ref: '#/components/schemas/Team'
         awayTeam:
           $ref: '#/components/schemas/Team'
+        referee:
+          type: string
+          example: Sapir Berman
         events:
           type: array
           xml:
             name: event
             wrapped: true
           items:
-            $ref: '#/components/schemas/MatchEvent'
+            $ref: '#/components/schemas/Event'
         start:
           type: string
           format: date-time
           example: 2021-01-30T20:30:00Z
-        end:
-          type: string
-          format: date-time
-          example: 2021-01-30T21:30:00Z
         homeTeamGoals:
           type: integer
           format: int32
@@ -997,15 +656,10 @@ components:
       properties:
         id:
           type: string
-          example: "10"
+          example: "11"
         name:
           type: string
-          example: Sami Ofer
-      example:
-      - id: "10"
-        name: Sami Ofer
-      xml:
-        name: Stadium
+          example: Sami Offer
     Team:
       type: object
       properties:
@@ -1018,6 +672,9 @@ components:
         stadiumId:
           type: string
           example: "11"
+        stadiumName:
+          type: string
+          example: Sami Offer
         teamLogo:
           type: string
           example: https://en.wikipedia.org/wiki/Maccabi_Haifa_F.C.#/media/File:Maccabi_Haifa_FC_Logo_2020.png
@@ -1034,13 +691,6 @@ components:
         id:
           type: string
           example: "10"
-        favoriteTeams:
-          type: array
-          xml:
-            name: team
-            wrapped: true
-          items:
-            $ref: '#/components/schemas/Team'
         favoriteMatches:
           type: array
           xml:
@@ -1048,13 +698,6 @@ components:
             wrapped: true
           items:
             $ref: '#/components/schemas/Match'
-        favoritePlayers:
-          type: array
-          xml:
-            name: player
-            wrapped: true
-          items:
-            $ref: '#/components/schemas/Player'
         userName:
           type: string
           example: Yaniv20
@@ -1076,18 +719,9 @@ components:
         picture:
           type: string
           example: https://secure.cache.images.core.optasports.com/soccer/players/150x150/56064.png
-        isLoggedIn:
+        isAdmin:
           type: boolean
-          example: true
-          default: false
-        role:
-          type: string
-          description: Role
-          example: user
-          default: user
-          enum:
-          - user
-          - manager
+          example: false
       xml:
         name: User
     Player:
@@ -1124,44 +758,12 @@ components:
           example: Goalkeeper
       xml:
         name: Player
-    Coach:
+    Event:
       type: object
       properties:
         id:
           type: string
           example: "10"
-        common name:
-          type: string
-          example: Barak Bachar
-        nationality:
-          type: string
-          example: Israeli
-        date of birth:
-          type: string
-          example: September 21, 1979
-        country of birth:
-          type: string
-          example: Israel
-        team:
-          $ref: '#/components/schemas/Team'
-        picture:
-          type: string
-          example: http://mhaifafc.com/pics/2020-2021/%D7%A6%D7%95%D7%95%D7%AA%20%D7%9E%D7%A7%D7%A6%D7%95%D7%A2%D7%99/%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA%20%D7%A6%D7%A8%D7%95%D7%91%D7%95%D7%AA/%D7%91%D7%9B%D7%A8.png
-      xml:
-        name: Coach
-    MatchEvent:
-      type: object
-      properties:
-        id:
-          type: string
-          example: "10"
-        matchId:
-          type: string
-          example: "11"
-        time:
-          type: string
-          format: date-time
-          example: 2021-01-30T20:30:00Z
         minute:
           type: integer
           format: int32
@@ -1173,26 +775,24 @@ components:
           type: string
           description: Event Type
           example: goal
-          enum:
-          - goal
-          - offside
-          - foul
-          - red card
-          - yellow card
-          - injury
-          - substitution
       xml:
         name: MatchEvent
-    ApiResponse:
+    Score:
       type: object
       properties:
-        code:
+        id:
+          type: string
+          example: "5"
+        matchId:
+          type: string
+          example: "10"
+        home:
           type: integer
           format: int32
-          example: 404
-        type:
-          type: string
-          example: page not found
-        message:
-          type: string
-          example: the requierd page was not found
+          example: 2
+        away:
+          type: integer
+          format: int32
+          example: 1
+      xml:
+        name: MatchEvent
