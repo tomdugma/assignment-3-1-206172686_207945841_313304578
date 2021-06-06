@@ -284,14 +284,13 @@ paths:
         content:
           application/yaml:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/body'
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
-        required: true
+              $ref: '#/components/schemas/body_1'
       responses:
         "201":
-          description: A new uswe has been added
+          description: A new user has been added
           content:
             application/yaml:
               schema:
@@ -306,23 +305,15 @@ paths:
       summary: Login an exist user
       description: An exist user login to the system
       operationId: loginUser
-      parameters:
-      - name: username
-        in: query
+      requestBody:
         description: The user name for login
-        required: true
-        style: form
-        explode: true
-        schema:
-          type: string
-      - name: password
-        in: query
-        description: The password for login in clear text
-        required: true
-        style: form
-        explode: true
-        schema:
-          type: string
+        content:
+          application/yaml:
+            schema:
+              $ref: '#/components/schemas/body_2'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_3'
       responses:
         "201":
           description: User was found in the DB and authenitcated successfully
@@ -796,3 +787,51 @@ components:
           example: 1
       xml:
         name: MatchEvent
+    body:
+      type: object
+      properties:
+        username:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        country:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+        profile_picture:
+          type: string
+    body_1:
+      type: object
+      properties:
+        username:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        country:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+        profile_picture:
+          type: string
+    body_2:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    body_3:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
